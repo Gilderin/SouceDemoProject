@@ -34,8 +34,8 @@ public class MainPageObject {
         Assert.assertEquals(productPage.getCartSelectedCount(), "1", "Count is not equals 1");
 
         //WebElement bucketIcon
-        driver.get("https://www.saucedemo.com/cart.html");
-
+        //driver.get("https://www.saucedemo.com/cart.html");
+        productPage.goToBucket();
         Assert.assertEquals(productPage.getCartSelectedCount(), "1", "Count is not equals 1");
         //
         driver.findElement(By.className("checkout_button")).click();
