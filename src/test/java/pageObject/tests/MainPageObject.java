@@ -31,12 +31,12 @@ public class MainPageObject {
         Assert.assertTrue(productPage.isPageOpened());
         productPage.addToCart("Sauce Labs Bolt T-Shirt");
         productPage.getCartSelectedCount();
-        Assert.assertEquals(productPage.getCartSelectedCount(), 1, "Count is not equals 1");
+        Assert.assertEquals(productPage.getCartSelectedCount(), "1", "Count is not equals 1");
 
         //WebElement bucketIcon
         driver.get("https://www.saucedemo.com/cart.html");
 
-        Assert.assertEquals(productPage.getCartSelectedCount(), 1, "Count is not equals 1");
+        Assert.assertEquals(productPage.getCartSelectedCount(), "1", "Count is not equals 1");
         //
         driver.findElement(By.className("checkout_button")).click();
         driver.findElement(By.id("first-name")).sendKeys("asd");
