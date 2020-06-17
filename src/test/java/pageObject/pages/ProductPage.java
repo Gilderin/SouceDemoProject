@@ -27,7 +27,7 @@ private By CARTCOUNTICONSELECTOR=By.cssSelector(".fa-layers-counter.shopping_car
         addCartButton.click();
     }
 
-    public String getProve(String name){
+    public String getPrice(String name){
         itemPriceidentificator=itemPriceidentificator.replace("i",name);
         WebElement price=driver.findElement(By.xpath(itemPriceidentificator));
         return price.getText();
