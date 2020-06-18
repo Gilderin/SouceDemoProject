@@ -1,5 +1,6 @@
 package pageObject.pages;
 
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,7 +9,7 @@ public class CheckoutOverviewPage {
     private WebDriver driver;
 
     private By CHECKOUTOVERVIEWSELECTOR = By.className("subheader");
-    private By FINISHBUTTONSELECTOR = By.className("btn_action cart_button");
+    private By FINISHBUTTONSELECTOR = By.cssSelector(".btn_action.cart_button");
     private By CANCELBUTTONSELECTOR = By.className("cart_cancel_link btn_secondary");
     private By PAYMENTINFORMATIONSELECTOR = By.xpath("//div[text()='SauceCard #31337']");
     private By SHIPPINGINFORMATIONSELECTOR = By.xpath("//div[text()='FREE PONY EXPRESS DELIVERY!']");

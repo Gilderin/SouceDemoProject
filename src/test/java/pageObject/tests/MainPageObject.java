@@ -6,8 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import pageObject.pages.LoginPage;
-import pageObject.pages.ProductPage;
+import pageObject.pages.*;
 
 import java.util.List;
 
@@ -24,11 +23,20 @@ public class MainPageObject {
     public void test() {
         String username = "standard_user";
         String password = "secret_sauce";
+        String firstName = "Andrey";
+        String lastName = "Mihaevich";
+        String code = "220022";
+        String productsName = "Sauce Labs Bolt T-Shirt";
+        String productsPrice = "15.99";
+
         LoginPage loginPage = new LoginPage(driver);
         Assert.assertTrue(loginPage.isPageOpened(), "Login page has not been opened");
+
         loginPage.login(username, password);
+
         ProductPage productPage = new ProductPage(driver);
         Assert.assertTrue(productPage.isPageOpened());
+
         productPage.addToCart("Sauce Labs Bolt T-Shirt");
         productPage.getCartSelectedCount();
         Assert.assertEquals(productPage.getCartSelectedCount(), "1", "Count is not equals 1");
@@ -37,17 +45,33 @@ public class MainPageObject {
         //driver.get("https://www.saucedemo.com/cart.html");
         productPage.goToBucket();
         Assert.assertEquals(productPage.getCartSelectedCount(), "1", "Count is not equals 1");
-        //
-        driver.findElement(By.className("checkout_button")).click();
-        driver.findElement(By.id("first-name")).sendKeys("asd");
-        driver.findElement(By.id("last-name")).sendKeys("asd");
-        driver.findElement(By.id("postal-code")).sendKeys("220059");
-        driver.findElement(By.xpath("//input[@type='submit']")).click();
-        Assert.assertEquals(driver.findElements(By.className("cart_item")).size(), 1, "");
-        Assert.assertTrue(driver.findElement(By.xpath("//div[text()='FREE PONY EXPRESS DELIVERY!']")).isDisplayed(), "Message good");
-        driver.findElement(By.cssSelector(".btn_action.cart_button")).click();
 
-        Assert.assertEquals(driver.findElement(By.tagName("h2")).getText(), "THANK YOU FOR YOUR ORDER", "Упс. Чтото пошло не так");
+//        Андрей, у меня код падает! Немогу понять почему! Там где цена, но и имя тоже не работает! Посмотри, если после курсов
+//        ты не устанешь! Давай созвонимся и решим эту проблему. Я уверена на 100%, что ты ее решиш. Просто я бы хотела, чтобы ты мне тоже обЪяснил!!!!
+
+        CartPage cartPage = new CartPage(driver);
+        Assert.assertTrue(cartPage.isPageOpened(),"Cart page has not been opened");
+//        String nameProductPage = productPage.addToCart(productsName);
+//        Assert.assertEquals(cartPage.getItemName(productsName), productsName, "Name do not match");
+        String priceProductPage = productPage.getPrice(productsPrice);
+        Assert.assertEquals(cartPage.getItemPrice(productsPrice), priceProductPage, "Prices do not match");
+        cartPage.checkout();
+
+        CheckOutInformationPage checkOutInformationPage = new CheckOutInformationPage(driver);
+        Assert.assertTrue(checkOutInformationPage.isPageOpened(), "Checkout information page has not been opened");
+        checkOutInformationPage.addPersonalInformation(firstName,lastName,code);
+        checkOutInformationPage.continueOrdering();
+
+        CheckoutOverviewPage checkoutOverviewPage = new CheckoutOverviewPage(driver);
+        Assert.assertTrue(checkoutOverviewPage.isPageOpened(), "Checkout Overview page has not opened");
+        Assert.assertEquals(checkoutOverviewPage.getPaymentInformation(),"SauceCard #31337", "Payment information does not match");
+        Assert.assertEquals(checkoutOverviewPage.getShippingInformation(), "FREE PONY EXPRESS DELIVERY!", "Shipping information doesn't match");
+        checkoutOverviewPage.finish();
+
+        FinishPage finishPage = new FinishPage(driver);
+        Assert.assertTrue(finishPage.isPageOpened(), "Finish page has not been opened");
+        Assert.assertEquals(finishPage.getThankYouForYourOrder(), "THANK YOU FOR YOUR ORDER", "Something is wrong!");
+        Assert.assertEquals(finishPage.getYourOrderHasBeenDispatched(), "Your order has been dispatched, and will arrive just as fast as the pony can get there!", "Something is wrong!");
     }
 
     @Test
