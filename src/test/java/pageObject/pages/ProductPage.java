@@ -3,10 +3,9 @@ package pageObject.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 
-public class ProductPage {
-    private WebDriver driver;
+public class ProductPage extends BasePage{
+
     private By PRODUCTSELECTOR = By.className("product_label");
     private String itemidentificator = "//div[text()='replace']/ancestor::div[@class='inventory_item']";
     private String itemButtonidentificator = itemidentificator + "/descendant::button";
@@ -15,7 +14,7 @@ public class ProductPage {
     private By BUCKETICONSELECTOR = By.tagName("svg");
 
     public ProductPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     public boolean isPageOpened() {

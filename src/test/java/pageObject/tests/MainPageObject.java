@@ -10,14 +10,7 @@ import pageObject.pages.*;
 
 import java.util.List;
 
-public class MainPageObject {
-    WebDriver driver;
-
-    @BeforeMethod
-    public void setup() {
-        driver = new ChromeDriver();
-
-    }
+public class MainPageObject extends BaseTests{
 
     @Test
     public void test() {
@@ -40,21 +33,15 @@ public class MainPageObject {
         productPage.addToCart("Sauce Labs Bolt T-Shirt");
         productPage.getCartSelectedCount();
         Assert.assertEquals(productPage.getCartSelectedCount(), "1", "Count is not equals 1");
+        String priceProductPage = productPage.getPrice(productsName).replace("$","");
 
-        //WebElement bucketIcon
-        //driver.get("https://www.saucedemo.com/cart.html");
+
         productPage.goToBucket();
         Assert.assertEquals(productPage.getCartSelectedCount(), "1", "Count is not equals 1");
-
-//        Андрей, у меня код падает! Немогу понять почему! Там где цена, но и имя тоже не работает! Посмотри, если после курсов
-//        ты не устанешь! Давай созвонимся и решим эту проблему. Я уверена на 100%, что ты ее решиш. Просто я бы хотела, чтобы ты мне тоже обЪяснил!!!!
-
         CartPage cartPage = new CartPage(driver);
         Assert.assertTrue(cartPage.isPageOpened(),"Cart page has not been opened");
-//        String nameProductPage = productPage.addToCart(productsName);
-//        Assert.assertEquals(cartPage.getItemName(productsName), productsName, "Name do not match");
-        String priceProductPage = productPage.getPrice(productsPrice);
-        Assert.assertEquals(cartPage.getItemPrice(productsPrice), priceProductPage, "Prices do not match");
+
+        Assert.assertEquals(cartPage.getItemPrice(productsName), priceProductPage, "Prices do not match");
         cartPage.checkout();
 
         CheckOutInformationPage checkOutInformationPage = new CheckOutInformationPage(driver);
@@ -112,8 +99,4 @@ public class MainPageObject {
                 "THANK YOU FOR YOUR ORDER", "Что-то пошло не так!!!");
     }
 
-    @AfterMethod
-    public void tearDown() {
-        driver.quit();
-    }
 }
