@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class CheckoutOverviewPage extends BasePage {
+
     private By CHECKOUTOVERVIEWSELECTOR = By.className("subheader");
     private By FINISHBUTTONSELECTOR = By.cssSelector(".btn_action.cart_button");
     private By CANCELBUTTONSELECTOR = By.className("cart_cancel_link btn_secondary");

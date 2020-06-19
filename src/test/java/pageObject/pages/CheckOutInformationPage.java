@@ -4,7 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class CheckOutInformationPage extends BasePage{
+public class CheckOutInformationPage extends BasePage {
+
     private By CHECKOUTPAGESELECTOR = By.className("subheader");
     private By FIRSTNAMESELECTOR = By.id("first-name");
     private By LASTNAMESELECTOR = By.id("last-name");
