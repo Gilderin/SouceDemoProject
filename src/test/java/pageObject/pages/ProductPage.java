@@ -4,12 +4,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class ProductPage extends BasePage{
+public class ProductPage extends BasePage {
 
     private By PRODUCTSELECTOR = By.className("product_label");
     private String itemidentificator = "//div[text()='replace']/ancestor::div[@class='inventory_item']";
     private String itemButtonidentificator = itemidentificator + "/descendant::button";
     private String itemPriceidentificator = itemidentificator + "/descendant::div[@class='inventory_item_price']";
+    private String itemDescriptionidentificator = itemidentificator + "/descendant::div[@class='inventory_item_desc']";
     private By CARTCOUNTICONSELECTOR = By.cssSelector(".fa-layers-counter.shopping_cart_badge");
     private By BUCKETICONSELECTOR = By.tagName("svg");
 
@@ -41,5 +42,11 @@ public class ProductPage extends BasePage{
     public void goToBucket() {
         WebElement bucketIcon = driver.findElement(BUCKETICONSELECTOR);
         bucketIcon.click();
+    }
+
+    public String getDescription(String name) {
+        String tmpitemDescriptionidentificator = itemDescriptionidentificator.replace("replace", name);
+        WebElement description = driver.findElement(By.xpath(tmpitemDescriptionidentificator));
+        return description.getText();
     }
 }
