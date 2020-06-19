@@ -4,8 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class CartPage {
-    private WebDriver driver;
+public class CartPage extends BasePage{
     private By CARTPAGESELECTOR = By.className("subheader");
     private By CHECKOUTBUTTONSELECTOR=By.cssSelector(".checkout_button");
     private By CONTINUESHOPPINGBUTTONSELECTOR=By.cssSelector(".cart_footer .btn_secondary");
@@ -17,7 +16,7 @@ public class CartPage {
     private String removeItemButtonIsentificator = itemIdentificator+"/descendant::button[contains(@class,'btn_secondary')]";
 
     public CartPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     public boolean isPageOpened() {

@@ -2,13 +2,13 @@ package pageObject.pages;
 
 import driverSettings.BrowserService;
 import org.openqa.selenium.WebDriver;
+import pageObject.tests.BaseTests;
 
-public class BasePage extends BrowserService {
+public class BasePage extends BaseTests {
     WebDriver driver;
-    BrowserService browserService = new BrowserService();
 
     public BasePage(WebDriver driver) {
-        this.driver = browserService.initBrowser();
+        this.driver = driver;
     }
 
 }
