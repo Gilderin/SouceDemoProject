@@ -5,8 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class CheckoutOverviewPage {
-    private WebDriver driver;
+public class CheckoutOverviewPage extends BasePage {
 
     private By CHECKOUTOVERVIEWSELECTOR = By.className("subheader");
     private By FINISHBUTTONSELECTOR = By.cssSelector(".btn_action.cart_button");
@@ -24,7 +23,7 @@ public class CheckoutOverviewPage {
     private String itemDescriptionIdentificator = itemIdentificator + "/descendant::div[@class='inventory_item_desc']";
 
     public CheckoutOverviewPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     public boolean isPageOpened() {

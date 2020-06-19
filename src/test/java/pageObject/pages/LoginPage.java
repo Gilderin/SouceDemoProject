@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class LoginPage extends BasePage{
+public class LoginPage extends BasePage {
     private By loginButtonSelector = By.xpath("//input[@value='LOGIN']");
     private By USERNAMESELECTOR = By.id("user-name");
     private By PASSWORDSELECTOR = By.id("password");
@@ -26,7 +26,7 @@ public class LoginPage extends BasePage{
         driver.findElement(loginButtonSelector).click();
     }
 
-    public String getError(){
+    public String getError() {
         return driver.findElement(ERRORSELECTOR).getText();
     }
 }
