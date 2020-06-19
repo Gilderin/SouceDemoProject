@@ -4,15 +4,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class FinishPage {
-    private WebDriver driver;
-
+public class FinishPage extends BasePage{
     private By FINISHSELECTOR = By.className("subheader");
     private By THANKYOUFORYOURORDERSELECTOR = By.className("complete-header");
     private By YOURORDERHASBEENDISPATCHED = By.className("complete-text");
 
     public FinishPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     public boolean isPageOpened() {
