@@ -1,16 +1,14 @@
 package pageObject.tests;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import pageObject.pages.*;
 
 import java.util.List;
 
-public class MainPageObject extends BaseTests{
+public class MainPageObject extends BaseTests {
 
     @Test
     public void test() {
@@ -33,25 +31,25 @@ public class MainPageObject extends BaseTests{
         productPage.addToCart("Sauce Labs Bolt T-Shirt");
         productPage.getCartSelectedCount();
         Assert.assertEquals(productPage.getCartSelectedCount(), "1", "Count is not equals 1");
-        String priceProductPage = productPage.getPrice(productsName).replace("$","");
+        String priceProductPage = productPage.getPrice(productsName).replace("$", "");
 
 
         productPage.goToBucket();
         Assert.assertEquals(productPage.getCartSelectedCount(), "1", "Count is not equals 1");
         CartPage cartPage = new CartPage(driver);
-        Assert.assertTrue(cartPage.isPageOpened(),"Cart page has not been opened");
+        Assert.assertTrue(cartPage.isPageOpened(), "Cart page has not been opened");
 
         Assert.assertEquals(cartPage.getItemPrice(productsName), priceProductPage, "Prices do not match");
         cartPage.checkout();
 
         CheckOutInformationPage checkOutInformationPage = new CheckOutInformationPage(driver);
         Assert.assertTrue(checkOutInformationPage.isPageOpened(), "Checkout information page has not been opened");
-        checkOutInformationPage.addPersonalInformation(firstName,lastName,code);
+        checkOutInformationPage.addPersonalInformation(firstName, lastName, code);
         checkOutInformationPage.continueOrdering();
 
         CheckoutOverviewPage checkoutOverviewPage = new CheckoutOverviewPage(driver);
         Assert.assertTrue(checkoutOverviewPage.isPageOpened(), "Checkout Overview page has not opened");
-        Assert.assertEquals(checkoutOverviewPage.getPaymentInformation(),"SauceCard #31337", "Payment information does not match");
+        Assert.assertEquals(checkoutOverviewPage.getPaymentInformation(), "SauceCard #31337", "Payment information does not match");
         Assert.assertEquals(checkoutOverviewPage.getShippingInformation(), "FREE PONY EXPRESS DELIVERY!", "Shipping information doesn't match");
         checkoutOverviewPage.finish();
 
