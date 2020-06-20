@@ -14,6 +14,7 @@ public class ProductPage extends BasePage {
     private By CARTCOUNTICONSELECTOR = By.cssSelector(".fa-layers-counter.shopping_cart_badge");
     private By BUCKETICONSELECTOR = By.tagName("svg");
 
+
     public ProductPage(WebDriver driver) {
         super(driver);
     }
@@ -48,5 +49,11 @@ public class ProductPage extends BasePage {
         String tmpitemDescriptionidentificator = itemDescriptionidentificator.replace("replace", name);
         WebElement description = driver.findElement(By.xpath(tmpitemDescriptionidentificator));
         return description.getText();
+    }
+
+    public String addButtonIsDisplayed(String name){
+        String tmpItemButtonidentificator = itemButtonidentificator.replace("replace", name);
+        WebElement addCartButton = driver.findElement(By.xpath(tmpItemButtonidentificator));
+        return addCartButton.getText();
     }
 }

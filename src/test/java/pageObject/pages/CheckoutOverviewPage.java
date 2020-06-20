@@ -39,7 +39,7 @@ public class CheckoutOverviewPage extends BasePage {
     public String getPrice(String name) {
         String tmpItemPriceIdentificator = itemPriceIdentificator.replace("replace", name);
         WebElement price = driver.findElement(By.xpath(tmpItemPriceIdentificator));
-        return price.getText();
+        return price.getText().replace("$","");
     }
 
     public String getDescription(String name) {
