@@ -59,7 +59,7 @@ public class AndreysTestsSauceDemo extends BaseTests{
 
         Assert.assertEquals(cartPage.getItemPrice(productsName), priceProductPage, "Prices do not match");
         Assert.assertEquals(cartPage.getItemDescription(productsName), descriptionProductPage, "Prices do not match");
-        Assert.assertEquals(cartPage.getItemName(productsName), descriptionProductPage, "Prices do not match");
+        Assert.assertEquals(cartPage.getItemName(productsName), descriptionProductPage, "Product description on Cart and Product pages not equal");
         cartPage.checkout();
 
         CheckOutInformationPage checkOutInformationPage = new CheckOutInformationPage(driver);
