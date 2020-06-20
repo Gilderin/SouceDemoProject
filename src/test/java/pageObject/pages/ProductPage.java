@@ -50,4 +50,10 @@ public class ProductPage extends BasePage {
         WebElement description = driver.findElement(By.xpath(tmpitemDescriptionidentificator));
         return description.getText();
     }
+
+    public String addButtonIsDisplayed(String name){
+        String tmpItemButtonidentificator = itemButtonidentificator.replace("replace", name);
+        WebElement addCartButton = driver.findElement(By.xpath(tmpItemButtonidentificator));
+        return addCartButton.getText();
+    }
 }
