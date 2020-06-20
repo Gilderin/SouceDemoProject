@@ -12,6 +12,7 @@ public class CheckOutInformationPage extends BasePage {
     private By ZIPCODESELECTOR = By.id("postal-code");
     private By CANCELBUTTONSELECTOR = By.cssSelector(".cart_cancel_link.btn_secondary");
     private By CONTINUEBUTTONSELECTOR = By.xpath("//input[@type='submit']");
+    private By ERRORSELECTOR = By.tagName("h3");
 
     public CheckOutInformationPage(WebDriver driver) {
         super(driver);
@@ -38,5 +39,9 @@ public class CheckOutInformationPage extends BasePage {
     public void continueOrdering() {
         WebElement continueButton = driver.findElement(CONTINUEBUTTONSELECTOR);
         continueButton.click();
+    }
+
+    public String getError() {
+        return driver.findElement(ERRORSELECTOR).getText();
     }
 }
