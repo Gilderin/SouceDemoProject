@@ -5,15 +5,15 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 
 public class BaseTests {
-    WebDriver driver;
+    public WebDriver driver;
     BrowserService browserService = new BrowserService();
 
-    @BeforeMethod
+    @BeforeTest
     public void setUp() {
         driver = browserService.initBrowser();
     }
 
-    @AfterMethod
+    @AfterTest
     public void tearDown() {
         driver.quit();
     }
