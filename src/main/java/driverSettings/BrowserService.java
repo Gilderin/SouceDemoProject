@@ -21,7 +21,7 @@ public class BrowserService {
                 chromeOptions.addArguments("--window-size=1920,1200");
                 chromeOptions.addArguments("--ignore-certificate-errors");
                 chromeOptions.addArguments("--silent");
-                driver=new ChromeDriver();
+                driver=new ChromeDriver(chromeOptions);
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 break;
             case "firefox":

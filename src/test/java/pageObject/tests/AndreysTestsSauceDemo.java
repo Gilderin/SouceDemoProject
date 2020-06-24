@@ -181,7 +181,7 @@ public class AndreysTestsSauceDemo extends BaseTests {
 
         CheckoutOverviewPage checkoutOverviewPage = new CheckoutOverviewPage(driver);
         Assert.assertEquals(checkoutOverviewPage.getName(productsName), productsName, "Product name does not match");
-        Assert.assertEquals(checkoutOverviewPage.getDescription(productsName), descriptionProductPage, "Product description does not match");
+        Assert.assertEquals(checkoutOverviewPage.getDescription(productsName), descriptionProductPage, "Product description  does not match");
         orderTax = Math.round(((Double.parseDouble(priceProductPage) / 100) * 8) * 100.0) / 100.0;
         orderTotal = Double.parseDouble(checkoutOverviewPage.getItemTotal()) + orderTax;
         Assert.assertEquals(checkoutOverviewPage.getPaymentInformation(), "SauceCard #31337", "Payment information does not match");
