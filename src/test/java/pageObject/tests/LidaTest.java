@@ -154,6 +154,7 @@ public class LidaTest extends BaseTests {
         Assert.assertEquals(cartPage.getItemPrice(productsName), priceFirstProductPage, "Prices do not match");
         Assert.assertEquals(cartPage.getItemPrice(productsName), priceSecondProductPage, "Prices do not match");
         cartPage.removeItem(productsName);
+        Assert.assertEquals(productPage.getCartSelectedCount(),"1", "Count is not equals 1");
         cartPage.checkout();
 
         CheckOutInformationPage checkOutInformationPage = new CheckOutInformationPage(driver);
