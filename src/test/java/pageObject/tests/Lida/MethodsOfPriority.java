@@ -85,7 +85,6 @@ public class MethodsOfPriority extends BaseTests {
         Assert.assertTrue(loginPage.isPageOpened(), "Login page has not been opened");
 
         loginPage.login(username, password);
-
     }
 
     @Test(priority = 3)
@@ -137,7 +136,5 @@ public class MethodsOfPriority extends BaseTests {
 
         CartPage cartPage = new CartPage(driver);
         Assert.assertTrue(cartPage.isPageOpened(), "Cart page has not been opened");
-
     }
-
 }
