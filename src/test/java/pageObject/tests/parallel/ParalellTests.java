@@ -1,11 +1,11 @@
-package pageObject.tests.anotation_lesson_andrey;
+package pageObject.tests.parallel;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObject.pages.*;
-import pageObject.tests.BaseTests;
+import pageObject.tests.anotation_lesson_andrey.BaseTest;
 
-public class PriorityTests extends BaseTest {
+public class ParalellTests extends BaseTest {
     String username = "standard_user";
     String lockedUsername = "locked_out_user";
     String password = "secret_sauce";
@@ -19,7 +19,7 @@ public class PriorityTests extends BaseTest {
     double orderTax = 0;
     double orderTotal = 0;
 
-    @Test(priority = 3)
+    @Test
     public void testRemoveProductFromCart() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(username, password);
@@ -35,7 +35,7 @@ public class PriorityTests extends BaseTest {
 
         Assert.assertEquals(productPage.addButtonIsDisplayed(productsName), "ADD TO CART", "Button 'ADD TO CART' is not displayed");
     }
-    @Test(priority = 1)
+    @Test
     public void testCartPageIsOpen() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(username, password);
@@ -48,7 +48,7 @@ public class PriorityTests extends BaseTest {
         Assert.assertTrue(cartPage.isPageOpened(), "Cart page has not been opened");
     }
 
-    @Test(priority = 1)
+    @Test
     public void testOverviewPageIsOpen() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(username, password);
@@ -64,7 +64,7 @@ public class PriorityTests extends BaseTest {
         Assert.assertTrue(checkOutInformationPage.isPageOpened(), "Checkout information page has not been opened");
     }
 
-    @Test(priority = 1)
+    @Test
     public void testCheckOutInformatiomPageIsOpen() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(username, password);
@@ -80,14 +80,14 @@ public class PriorityTests extends BaseTest {
         Assert.assertTrue(checkOutInformationPage.isPageOpened(), "Checkout information page has not been opened");
     }
 
-    @Test(priority = 1)
+    @Test
     public void testLoginPageIsOpen() {
         LoginPage loginPage = new LoginPage(driver);
         Assert.assertTrue(loginPage.isPageOpened(), "Login page has not been opened");
     }
 
-    @Test(priority = 1)
-    public void testOProductPageIsOpen() {
+    @Test
+    public void testProductPageIsOpen() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(username, password);
 
@@ -95,7 +95,7 @@ public class PriorityTests extends BaseTest {
         Assert.assertTrue(productPage.isPageOpened());
     }
 
-    @Test(priority = 1)
+    @Test
     public void testFinishPageIsOpen() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(username, password);
@@ -118,7 +118,7 @@ public class PriorityTests extends BaseTest {
         Assert.assertTrue(finishPage.isPageOpened(), "Finish page has not been opened");
     }
 
-    @Test(priority = 0)
+    @Test()
     public void testLogin() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(username, password);
@@ -127,7 +127,7 @@ public class PriorityTests extends BaseTest {
         Assert.assertTrue(productPage.isPageOpened());
     }
 
-    @Test(priority = 2)
+    @Test
     public void testLoginLocketUser() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(lockedUsername, password);
@@ -135,7 +135,7 @@ public class PriorityTests extends BaseTest {
         Assert.assertEquals(loginPage.getError(), errorMessage, "Error message not correct");
     }
 
-    @Test(priority = 1)
+    @Test
     public void testBuyOneProduct() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(username, password);
@@ -159,7 +159,7 @@ public class PriorityTests extends BaseTest {
         Assert.assertEquals(finishPage.getYourOrderHasBeenDispatched(), "Your order has been dispatched, and will arrive just as fast as the pony can get there!", "Something is wrong!");
     }
 
-    @Test(priority = 3)
+    @Test
     public void testInformationInCart() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(username, password);
@@ -177,7 +177,7 @@ public class PriorityTests extends BaseTest {
         Assert.assertEquals(cartPage.getItemName(productsName), productsName, "Product description on Cart and Product pages not equal");
     }
 
-    @Test(priority = 3)
+    @Test
     public void testInformationInOrder() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(username, password);
@@ -206,6 +206,5 @@ public class PriorityTests extends BaseTest {
         Assert.assertEquals(checkoutOverviewPage.getTotal(), String.valueOf(orderTotal), "Order total does not match");
         Assert.assertEquals(checkoutOverviewPage.getShippingInformation(), "FREE PONY EXPRESS DELIVERY!", "Shipping information doesn't match");
     }
-
 
 }
