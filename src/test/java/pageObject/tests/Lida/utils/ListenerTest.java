@@ -1,4 +1,4 @@
-package pageObject.tests.Lida;
+package pageObject.tests.Lida.utils;
 
 import org.testng.ITestContext;
 import org.testng.ITestListener;

@@ -1,10 +1,12 @@
-package pageObject.tests.Lida;
+package pageObject.tests.Lida.allure;
 
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObject.pages.*;
+import pageObject.tests.Lida.BaseTests;
 
-public class LidaTest extends BaseTests {
+public class AllureDescriptionTest extends BaseTests_2 {
     String username = "standard_user";
     String password = "secret_sauce";
     String firstName = "Lida";
@@ -14,7 +16,8 @@ public class LidaTest extends BaseTests {
     String productsName_2 = "Test.allTheThings() T-Shirt (Red)";
     String productsName_3 = "Sauce Labs Backpack";
 
-    @Test
+    @Description("This test adds one product to the cart and makes a purchase.")
+    @Test(description = "Add one product")
     public void addOneProduct() {
         LoginPage loginPage = new LoginPage(driver);
         Assert.assertTrue(loginPage.isPageOpened(), "Login page has not been opened");
@@ -57,7 +60,8 @@ public class LidaTest extends BaseTests {
         Assert.assertEquals(finishPage.getYourOrderHasBeenDispatched(), "Your order has been dispatched, and will arrive just as fast as the pony can get there!", "Something is wrong!");
     }
 
-    @Test
+    @Description("This test adds some product to the cart and makes a purchase.")
+    @Test(description = "Add some product")
     public void addSomeProduct() {
         LoginPage loginPage = new LoginPage(driver);
         Assert.assertTrue(loginPage.isPageOpened(), "Login page has not been opened");
@@ -112,7 +116,8 @@ public class LidaTest extends BaseTests {
                 "Something is wrong!");
     }
 
-    @Test
+    @Description("This test checks a locked user.")
+    @Test(description = "Test locked out user")
     public void testLockedOutUser() {
         String anotherUsername = "locked_out_user";
         String error = "Epic sadface: Sorry, this user has been locked out.";
@@ -124,7 +129,8 @@ public class LidaTest extends BaseTests {
         Assert.assertEquals(loginPage.getError(), error, "There's been a mistake!");
     }
 
-    @Test
+    @Description("This test checks the button to continue shopping and makes a purchase.")
+    @Test(description = "Check button continue shopping")
     public void addProductContinueShopping() {
         LoginPage loginPage = new LoginPage(driver);
         Assert.assertTrue(loginPage.isPageOpened(), "Login page has not been opened");
@@ -190,7 +196,8 @@ public class LidaTest extends BaseTests {
                 "Something is wrong!");
     }
 
-    @Test
+    @Description("This test checks the button to remove the product and makes a purchase.")
+    @Test(description = "Check button remove")
     public void removeProduct() {
 
         LoginPage loginPage = new LoginPage(driver);
@@ -248,7 +255,8 @@ public class LidaTest extends BaseTests {
                 "Something is wrong!");
     }
 
-    @Test
+    @Description("This test checks for errors on the page Checkout Your Information.")
+    @Test(description = "Check error in page checkout your information")
     public void errorInPageCheckoutYourInformation() {
         String errorFirthName = "Error: First Name is required";
         String errorLastName = "Error: Last Name is required";

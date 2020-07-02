@@ -3,7 +3,7 @@ package pageObject.tests.Lida;
 import driverSettings.BrowserService;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
-import pageObject.tests.Lida.ListenerTest;
+import pageObject.tests.Lida.utils.ListenerTest;
 
 @Listeners(ListenerTest.class)
 
