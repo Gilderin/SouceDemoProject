@@ -1,4 +1,4 @@
-package pageObject.tests.Lida.parallel;
+package pageObject.tests.Lida.priority;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
