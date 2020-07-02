@@ -1,9 +1,9 @@
-package pageObject.tests.Lida;
+package pageObject.tests.Lida.parallel;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObject.pages.*;
-import pageObject.tests.BaseTests;
+import pageObject.tests.Lida.BaseTests;
 
 public class DependsOnMethod extends BaseTests {
     String username = "standard_user";

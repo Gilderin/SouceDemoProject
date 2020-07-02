@@ -1,8 +1,9 @@
-package pageObject.tests;
+package pageObject.tests.Lida.mainPageObject;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObject.pages.*;
+import pageObject.tests.Lida.BaseTests;
 
 public class AndreysTestsSauceDemo extends BaseTests {
     String username = "standard_user";

@@ -1,8 +1,7 @@
 package pageObject.pages;
 
-import driverSettings.BrowserService;
 import org.openqa.selenium.WebDriver;
-import pageObject.tests.BaseTests;
+import pageObject.tests.Lida.BaseTests;
 
 public class BasePage extends BaseTests{
     WebDriver driver;

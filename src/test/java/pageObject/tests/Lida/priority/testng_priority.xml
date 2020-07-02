@@ -3,7 +3,7 @@
 <suite name="TestSauceDemo">
     <test name="CheckSauceDEMO">
         <classes>
-            <class name="pageObject.tests.Lida.MethodsOfPriority"></class>
+            <class name="pageObject.tests.Lida.priority.MethodsOfPriority"></class>
         </classes>
     </test>
 </suite>

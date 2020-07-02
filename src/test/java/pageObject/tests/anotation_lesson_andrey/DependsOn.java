@@ -3,7 +3,7 @@ package pageObject.tests.anotation_lesson_andrey;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObject.pages.*;
-import pageObject.tests.BaseTests;
+import pageObject.tests.Lida.BaseTests;
 
 public class DependsOn extends BaseTests {
     String username = "standard_user";

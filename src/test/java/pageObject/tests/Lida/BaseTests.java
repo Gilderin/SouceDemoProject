@@ -1,4 +1,4 @@
-package pageObject.tests;
+package pageObject.tests.Lida;
 
 import driverSettings.BrowserService;
 import org.openqa.selenium.WebDriver;

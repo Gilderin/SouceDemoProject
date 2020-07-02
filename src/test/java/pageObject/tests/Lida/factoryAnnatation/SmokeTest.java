@@ -1,10 +1,10 @@
-package pageObject.tests.Lida;
+package pageObject.tests.Lida.factoryAnnatation;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObject.pages.LoginPage;
 import pageObject.pages.ProductPage;
-import pageObject.tests.BaseTests;
+import pageObject.tests.Lida.BaseTests;
 
 public class SmokeTest extends BaseTests {
     String username = "standard_user";

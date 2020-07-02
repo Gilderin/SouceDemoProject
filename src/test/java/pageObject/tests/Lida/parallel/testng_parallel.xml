@@ -3,7 +3,7 @@
 <suite name="Parallel" thread-count="2" parallel="methods">
     <test name="run_1">
         <classes>
-            <class name="pageObject.tests.Lida.DependsOnMethod"></class>
+            <class name="pageObject.tests.Lida.parallel.DependsOnMethod"></class>
         </classes>
     </test>
 </suite>

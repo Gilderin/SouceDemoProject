@@ -1,10 +1,11 @@
-package pageObject.tests;
+package pageObject.tests.Lida.mainPageObject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import pageObject.pages.*;
+import pageObject.tests.Lida.BaseTests;
 
 import java.util.List;
 

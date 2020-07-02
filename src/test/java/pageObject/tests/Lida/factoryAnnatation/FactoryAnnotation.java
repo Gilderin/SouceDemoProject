@@ -1,4 +1,4 @@
-package pageObject.tests.Lida;
+package pageObject.tests.Lida.factoryAnnatation;
 
 import org.testng.annotations.Factory;
 import org.testng.annotations.Test;

@@ -16,11 +16,11 @@ public class BrowserService {
         switch(browserName){
             case "chrome":
                 ChromeOptions chromeOptions=new ChromeOptions();
-                //chromeOptions.addArguments("--headless");
-                //chromeOptions.addArguments("--disable-gpu");
+                chromeOptions.addArguments("--headless");
+                chromeOptions.addArguments("--disable-gpu");
                 chromeOptions.addArguments("--window-size=1920,1200");
                 chromeOptions.addArguments("--ignore-certificate-errors");
-                //chromeOptions.addArguments("--silent");
+                chromeOptions.addArguments("--silent");
                 driver=new ChromeDriver(chromeOptions);
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 break;

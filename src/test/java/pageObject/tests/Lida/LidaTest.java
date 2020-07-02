@@ -1,11 +1,12 @@
-package pageObject.tests;
+package pageObject.tests.Lida;
 
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObject.pages.*;
+import pageObject.tests.Lida.BaseTests;
 
 public class LidaTest extends BaseTests {
-
     String username = "standard_user";
     String password = "secret_sauce";
     String firstName = "Lida";
@@ -15,8 +16,9 @@ public class LidaTest extends BaseTests {
     String productsName_2 = "Test.allTheThings() T-Shirt (Red)";
     String productsName_3 = "Sauce Labs Backpack";
 
-    @Test
-    public void addOneProduct () {
+    @Description("This test adds one product to the cart and makes a purchase.")
+    @Test(description = "Add one product")
+    public void addOneProduct() {
         LoginPage loginPage = new LoginPage(driver);
         Assert.assertTrue(loginPage.isPageOpened(), "Login page has not been opened");
 
@@ -58,7 +60,8 @@ public class LidaTest extends BaseTests {
         Assert.assertEquals(finishPage.getYourOrderHasBeenDispatched(), "Your order has been dispatched, and will arrive just as fast as the pony can get there!", "Something is wrong!");
     }
 
-    @Test
+    @Description("This test adds some product to the cart and makes a purchase.")
+    @Test(description = "Add some product")
     public void addSomeProduct() {
         LoginPage loginPage = new LoginPage(driver);
         Assert.assertTrue(loginPage.isPageOpened(), "Login page has not been opened");
@@ -113,7 +116,8 @@ public class LidaTest extends BaseTests {
                 "Something is wrong!");
     }
 
-    @Test
+    @Description("This test checks a locked user.")
+    @Test(description = "Test locked out user")
     public void testLockedOutUser() {
         String anotherUsername = "locked_out_user";
         String error = "Epic sadface: Sorry, this user has been locked out.";
@@ -125,65 +129,8 @@ public class LidaTest extends BaseTests {
         Assert.assertEquals(loginPage.getError(), error, "There's been a mistake!");
     }
 
-    @Test
-    public void removeProduct() {
-
-        LoginPage loginPage = new LoginPage(driver);
-        Assert.assertTrue(loginPage.isPageOpened(), "Login page has not been opened");
-
-        loginPage.login(username, password);
-
-        ProductPage productPage = new ProductPage(driver);
-        Assert.assertTrue(productPage.isPageOpened());
-
-        productPage.addToCart(productsName);
-        productPage.addToCart(productsName_2);
-
-        productPage.getCartSelectedCount();
-        Assert.assertEquals(productPage.getCartSelectedCount(), "2", "Count is not equals 2");
-
-        String priceFirstProductPage = productPage.getPrice(productsName).replace("$", "");
-        String priceSecondProductPage = productPage.getPrice(productsName_2).replace("$", "");
-
-        productPage.goToBucket();
-        Assert.assertEquals(productPage.getCartSelectedCount(), "2", "Count is not equals 2");
-
-        CartPage cartPage = new CartPage(driver);
-        Assert.assertTrue(cartPage.isPageOpened(), "Cart page has not been opened");
-
-        Assert.assertEquals(cartPage.getItemPrice(productsName), priceFirstProductPage, "Prices do not match");
-        Assert.assertEquals(cartPage.getItemPrice(productsName), priceSecondProductPage, "Prices do not match");
-        cartPage.removeItem(productsName);
-        Assert.assertEquals(productPage.getCartSelectedCount(),"1", "Count is not equals 1");
-        cartPage.checkout();
-
-        CheckOutInformationPage checkOutInformationPage = new CheckOutInformationPage(driver);
-        Assert.assertTrue(checkOutInformationPage.isPageOpened(),
-                "Checkout information page has not been opened");
-
-        checkOutInformationPage.addPersonalInformation(firstName, lastName, code);
-        checkOutInformationPage.continueOrdering();
-
-        CheckoutOverviewPage checkoutOverviewPage = new CheckoutOverviewPage(driver);
-        Assert.assertTrue(checkoutOverviewPage.isPageOpened(), "Checkout Overview page has not opened");
-        Assert.assertEquals(checkoutOverviewPage.getPaymentInformation(),
-                "SauceCard #31337", "Payment information does not match");
-
-        Assert.assertEquals(checkoutOverviewPage.getShippingInformation(),
-                "FREE PONY EXPRESS DELIVERY!", "Shipping information doesn't match");
-        checkoutOverviewPage.finish();
-
-        FinishPage finishPage = new FinishPage(driver);
-        Assert.assertTrue(finishPage.isPageOpened(), "Finish page has not been opened");
-        Assert.assertEquals(finishPage.getThankYouForYourOrder(),
-                "THANK YOU FOR YOUR ORDER", "Something is wrong!");
-
-        Assert.assertEquals(finishPage.getYourOrderHasBeenDispatched(),
-                "Your order has been dispatched, and will arrive just as fast as the pony can get there!",
-                "Something is wrong!");
-    }
-
-    @Test
+    @Description("This test checks the button to continue shopping and makes a purchase.")
+    @Test(description = "Check button continue shopping")
     public void addProductContinueShopping() {
         LoginPage loginPage = new LoginPage(driver);
         Assert.assertTrue(loginPage.isPageOpened(), "Login page has not been opened");
@@ -249,7 +196,67 @@ public class LidaTest extends BaseTests {
                 "Something is wrong!");
     }
 
-    @Test
+    @Description("This test checks the button to remove the product and makes a purchase.")
+    @Test(description = "Check button remove")
+    public void removeProduct() {
+
+        LoginPage loginPage = new LoginPage(driver);
+        Assert.assertTrue(loginPage.isPageOpened(), "Login page has not been opened");
+
+        loginPage.login(username, password);
+
+        ProductPage productPage = new ProductPage(driver);
+        Assert.assertTrue(productPage.isPageOpened());
+
+        productPage.addToCart(productsName);
+        productPage.addToCart(productsName_2);
+
+        productPage.getCartSelectedCount();
+        Assert.assertEquals(productPage.getCartSelectedCount(), "2", "Count is not equals 2");
+
+        String priceFirstProductPage = productPage.getPrice(productsName).replace("$", "");
+        String priceSecondProductPage = productPage.getPrice(productsName_2).replace("$", "");
+
+        productPage.goToBucket();
+        Assert.assertEquals(productPage.getCartSelectedCount(), "2", "Count is not equals 2");
+
+        CartPage cartPage = new CartPage(driver);
+        Assert.assertTrue(cartPage.isPageOpened(), "Cart page has not been opened");
+
+        Assert.assertEquals(cartPage.getItemPrice(productsName), priceFirstProductPage, "Prices do not match");
+        Assert.assertEquals(cartPage.getItemPrice(productsName), priceSecondProductPage, "Prices do not match");
+        cartPage.removeItem(productsName);
+        Assert.assertEquals(productPage.getCartSelectedCount(), "1", "Count is not equals 1");
+        cartPage.checkout();
+
+        CheckOutInformationPage checkOutInformationPage = new CheckOutInformationPage(driver);
+        Assert.assertTrue(checkOutInformationPage.isPageOpened(),
+                "Checkout information page has not been opened");
+
+        checkOutInformationPage.addPersonalInformation(firstName, lastName, code);
+        checkOutInformationPage.continueOrdering();
+
+        CheckoutOverviewPage checkoutOverviewPage = new CheckoutOverviewPage(driver);
+        Assert.assertTrue(checkoutOverviewPage.isPageOpened(), "Checkout Overview page has not opened");
+        Assert.assertEquals(checkoutOverviewPage.getPaymentInformation(),
+                "SauceCard #31337", "Payment information does not match");
+
+        Assert.assertEquals(checkoutOverviewPage.getShippingInformation(),
+                "FREE PONY EXPRESS DELIVERY!", "Shipping information doesn't match");
+        checkoutOverviewPage.finish();
+
+        FinishPage finishPage = new FinishPage(driver);
+        Assert.assertTrue(finishPage.isPageOpened(), "Finish page has not been opened");
+        Assert.assertEquals(finishPage.getThankYouForYourOrder(),
+                "THANK YOU FOR YOUR ORDER", "Something is wrong!");
+
+        Assert.assertEquals(finishPage.getYourOrderHasBeenDispatched(),
+                "Your order has been dispatched, and will arrive just as fast as the pony can get there!",
+                "Something is wrong!");
+    }
+
+    @Description("This test checks for errors on the page Checkout Your Information.")
+    @Test(description = "Check error in page checkout your information")
     public void errorInPageCheckoutYourInformation() {
         String errorFirthName = "Error: First Name is required";
         String errorLastName = "Error: Last Name is required";
@@ -289,5 +296,4 @@ public class LidaTest extends BaseTests {
 //        Assert.assertEquals(checkOutInformationPage.getError(), errorLastName, "There's been a mistake!" );
         Assert.assertEquals(checkOutInformationPage.getError(), errorPostalCode, "There's been a mistake!");
     }
-
 }
