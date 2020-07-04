@@ -7,31 +7,37 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 public class BrowserService {
-    WebDriver driver=null;
-    String browserName="chrome";
-    public WebDriver initBrowser(){
-        switch(browserName){
+    WebDriver driver = null;
+    String browserName = "chrome";
+
+    public WebDriver initBrowser() {
+        switch (browserName) {
             case "chrome":
-                ChromeOptions chromeOptions=new ChromeOptions();
+                HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
+                chromePrefs.put("profile.default_content_settings.popups", 0);
+                chromePrefs.put("download.default_directory", System.getProperty("user.dir"));
+                ChromeOptions chromeOptions = new ChromeOptions();
                 //chromeOptions.addArguments("--headless");
                 //chromeOptions.addArguments("--disable-gpu");
+                chromeOptions.setExperimentalOption("prefs", chromePrefs);
                 chromeOptions.addArguments("--window-size=1920,1200");
                 chromeOptions.addArguments("--ignore-certificate-errors");
                 //chromeOptions.addArguments("--silent");
-                driver=new ChromeDriver(chromeOptions);
+                driver = new ChromeDriver(chromeOptions);
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 break;
             case "firefox":
-                driver=new FirefoxDriver();
+                driver = new FirefoxDriver();
                 break;
             case "ie":
-                driver=new InternetExplorerDriver();
+                driver = new InternetExplorerDriver();
                 break;
             case "edge":
-                driver=new EdgeDriver();
+                driver = new EdgeDriver();
                 break;
             default:
                 System.out.println("This browser is not supported");

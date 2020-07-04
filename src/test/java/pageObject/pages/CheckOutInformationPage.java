@@ -1,5 +1,6 @@
 package pageObject.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,10 +19,12 @@ public class CheckOutInformationPage extends BasePage {
         super(driver);
     }
 
+    @Step("Проверка открытия страницы Checkout: Information")
     public boolean isPageOpened() {
         return driver.findElement(CHECKOUTPAGESELECTOR).isDisplayed();
     }
 
+    @Step("Добавление данных для доставки на странице Checkout: Information")
     public void addPersonalInformation(String first, String last, String code) {
         WebElement firstName = driver.findElement(FIRSTNAMESELECTOR);
         firstName.sendKeys(first);
@@ -31,16 +34,19 @@ public class CheckOutInformationPage extends BasePage {
         zipCode.sendKeys(code);
     }
 
+    @Step("Нажатие кнопки 'Cancel' на странице Checkout: Information")
     public void cancelOrdering() {
         WebElement cancelButton = driver.findElement(CANCELBUTTONSELECTOR);
         cancelButton.click();
     }
 
+    @Step("Нажатие кнопки 'Continue ordering' на странице Checkout: Information")
     public void continueOrdering() {
         WebElement continueButton = driver.findElement(CONTINUEBUTTONSELECTOR);
         continueButton.click();
     }
 
+    @Step("Получение текста ошибки на странице Checkout: Information")
     public String getError() {
         return driver.findElement(ERRORSELECTOR).getText();
     }

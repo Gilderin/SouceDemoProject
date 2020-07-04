@@ -1,5 +1,6 @@
 package pageObject.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,17 +16,20 @@ public class LoginPage extends BasePage {
         driver.get("https://www.saucedemo.com/index.html");
     }
 
+    @Step("Проверка открытия страницы Login")
     public boolean isPageOpened() {
         WebElement loginButton = driver.findElement(loginButtonSelector);
         return loginButton.isDisplayed();
     }
 
+    @Step("Ввод данных пользователя на странице Login")
     public void login(String username, String password) {
         driver.findElement(USERNAMESELECTOR).sendKeys(username);
         driver.findElement(PASSWORDSELECTOR).sendKeys(password);
         driver.findElement(loginButtonSelector).click();
     }
 
+    @Step("Получения текста ошибки на странице Login")
     public String getError() {
         return driver.findElement(ERRORSELECTOR).getText();
     }

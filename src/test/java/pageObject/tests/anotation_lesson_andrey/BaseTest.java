@@ -6,7 +6,7 @@ import org.testng.annotations.*;
 
 @Listeners(ListenerTest.class)
 public class BaseTest {
-    public WebDriver driver;
+    public static WebDriver driver;
     BrowserService browserService = new BrowserService();
 
     @BeforeMethod
@@ -18,5 +18,9 @@ public class BaseTest {
     @AfterMethod
     public void tearDown() {
         driver.quit();
+    }
+
+    public static WebDriver getDriver() {
+        return driver;
     }
 }

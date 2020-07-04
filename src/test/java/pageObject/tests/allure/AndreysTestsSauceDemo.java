@@ -1,9 +1,11 @@
-package pageObject.tests;
+package pageObject.tests.allure;
 
+import io.qameta.allure.Attachment;
+import io.qameta.allure.Description;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pageObject.pages.*;
+import pageObject.tests.BaseTests;
 
 
 public class AndreysTestsSauceDemo extends BaseTests {
@@ -20,7 +22,8 @@ public class AndreysTestsSauceDemo extends BaseTests {
     double orderTax = 0;
     double orderTotal = 0;
 
-    @Test
+    @Attachment("Привет. Это приложение к тесту")
+    @Test(description = "Проверка открытия страницы 'Cart'")
     public void testCartPageIsOpen() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(username, password);
@@ -33,6 +36,7 @@ public class AndreysTestsSauceDemo extends BaseTests {
         Assert.assertTrue(cartPage.isPageOpened(), "Cart page has not been opened");
     }
 
+    @Description("Проверка открытия страницы ''")
     @Test
     public void testOverviewPageIsOpen() {
         LoginPage loginPage = new LoginPage(driver);
@@ -49,7 +53,7 @@ public class AndreysTestsSauceDemo extends BaseTests {
         Assert.assertTrue(checkOutInformationPage.isPageOpened(), "Checkout information page has not been opened");
     }
 
-    @Test
+    @Test(description = "Проверка открытия страницы 'Checkout: Information'")
     public void testCheckOutInformatiomPageIsOpen() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(username, password);
@@ -65,13 +69,13 @@ public class AndreysTestsSauceDemo extends BaseTests {
         Assert.assertTrue(checkOutInformationPage.isPageOpened(), "Checkout information page has not been opened");
     }
 
-    @Test
+    @Test(description = "Проверка открытия страницы 'Checkout: Information'")
     public void testLoginPageIsOpen() {
         LoginPage loginPage = new LoginPage(driver);
         Assert.assertTrue(loginPage.isPageOpened(), "Login page has not been opened");
     }
 
-    @Test
+    @Test(description = "Проверка открытия страницы 'Product'")
     public void testOProductPageIsOpen() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(username, password);
@@ -80,7 +84,7 @@ public class AndreysTestsSauceDemo extends BaseTests {
         Assert.assertTrue(productPage.isPageOpened());
     }
 
-    @Test
+    @Test(description = "Проверка открытия страницы 'Finish'")
     public void testFinishPageIsOpen() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(username, password);
@@ -103,7 +107,7 @@ public class AndreysTestsSauceDemo extends BaseTests {
         Assert.assertTrue(finishPage.isPageOpened(), "Finish page has not been opened");
     }
 
-    @Test
+    @Test(description = "Проверка входа на сайт")
     public void testLogin() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(username, password);
@@ -112,7 +116,7 @@ public class AndreysTestsSauceDemo extends BaseTests {
         Assert.assertTrue(productPage.isPageOpened());
     }
 
-    @Test
+    @Test(description = "Проверка входа на сайт с заблокированными данными")
     public void testLoginLocketUser() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(lockedUsername, password);
@@ -120,6 +124,7 @@ public class AndreysTestsSauceDemo extends BaseTests {
         Assert.assertEquals(loginPage.getError(), errorMessage, "Error message not correct");
     }
 
+    @Description("Проверка покупки  одного товара")
     @Test
     public void testBuyOneProduct() {
         LoginPage loginPage = new LoginPage(driver);
@@ -144,6 +149,7 @@ public class AndreysTestsSauceDemo extends BaseTests {
         Assert.assertEquals(finishPage.getYourOrderHasBeenDispatched(), "Your order has been dispatched, and will arrive just as fast as the pony can get there!", "Something is wrong!");
     }
 
+    @Description("Проверка информации о товаре на странице 'Cart'")
     @Test
     public void testInformationInCart() {
         LoginPage loginPage = new LoginPage(driver);
@@ -162,6 +168,7 @@ public class AndreysTestsSauceDemo extends BaseTests {
         Assert.assertEquals(cartPage.getItemName(productsName), productsName, "Product description on Cart and Product pages not equal");
     }
 
+    @Description("Проверка информации о товаре на странице 'Checkout: Information'")
     @Test
     public void testInformationInOrder() {
         LoginPage loginPage = new LoginPage(driver);
@@ -193,6 +200,7 @@ public class AndreysTestsSauceDemo extends BaseTests {
         Assert.assertEquals(checkoutOverviewPage.getShippingInformation(), "FREE PONY EXPRESS DELIVERY!", "Shipping information doesn't match");
     }
 
+    @Description("Проверка удаления товара из Корзины'")
     @Test
     public void testRemoveProductFromCart() {
         LoginPage loginPage = new LoginPage(driver);
