@@ -11,12 +11,12 @@ public class BaseTests {
     public WebDriver driver;
     BrowserService browserService = new BrowserService();
 
-    @BeforeTest
+    @BeforeMethod
     public void setUp() {
         driver = browserService.initBrowser();
     }
 
-    @AfterTest
+    @AfterMethod
     public void tearDown() {
         driver.quit();
     }
